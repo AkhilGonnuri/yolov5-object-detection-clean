@@ -3,18 +3,18 @@
 # Author: G Chaitanya Sai (gcsai)
 # Place this file at the repo root (same folder as detect.py)
 
-import streamlit as st
 import subprocess
-from pathlib import Path
 import time
-import os
+from pathlib import Path
+
+import streamlit as st
 
 # ---------- Config ----------
 AUTHOR = "G Chaitanya Sai (gcsai)"
-WEIGHTS = "yolov5s.pt"               # pretrained weights (auto-download)
-OUTPUT_PROJECT = "runs/streamlit"     # folder where detect.py writes results
+WEIGHTS = "yolov5s.pt"  # pretrained weights (auto-download)
+OUTPUT_PROJECT = "runs/streamlit"  # folder where detect.py writes results
 OUTPUT_NAME = "output"
-USE_CPU = True                        # Set False to allow GPU (if you have CUDA configured)
+USE_CPU = True  # Set False to allow GPU (if you have CUDA configured)
 # -----------------------------
 
 st.set_page_config(page_title=f"YOLOv5 Demo — {AUTHOR}", layout="wide")
@@ -27,7 +27,9 @@ st.markdown(
 
 # Device selection notice
 if USE_CPU:
-    st.info("Running inference on **CPU**. If you have a CUDA-enabled GPU, set `USE_CPU = False` in this file for GPU inference.")
+    st.info(
+        "Running inference on **CPU**. If you have a CUDA-enabled GPU, set `USE_CPU = False` in this file for GPU inference."
+    )
 
 uploaded = st.file_uploader("Choose an image", type=["jpg", "jpeg", "png"])
 
@@ -55,7 +57,7 @@ if uploaded is not None:
     with st.spinner("Detecting..."):
         try:
             # Run detect.py as subprocess
-            completed = subprocess.run(cmd, shell=True, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            completed = subprocess.run(cmd, shell=True, check=True, capture_output=True, text=True)
             # Optionally show some output logs in the app (short)
             if completed.stdout:
                 st.text("detect.py output (tail):")

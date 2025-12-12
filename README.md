@@ -33,9 +33,11 @@ I also added an optional **Streamlit Web UI**, allowing users to upload images a
 <div align="center">
 
 ### **Input Image**
+
 <img src="data/images/zidane.jpg" alt="Input" width="45%">
 
 ### **Prediction Output**
+
 <img src="runs/detect/exp/zidane.jpg" alt="Prediction" width="45%">
 
 </div>
@@ -195,3 +197,4 @@ runs/
 G Chaitanya Sai
 Customized and enhanced YOLOv5 for real-world usage, deployment, and portfolio-ready presentation.
 
+```
